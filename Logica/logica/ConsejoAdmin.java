@@ -2,6 +2,8 @@ package logica;
 
 import java.util.ArrayList;
 
+import cu.edu.cujae.ceis.graph.LinkedGraph;
+
 
 public class ConsejoAdmin {
 	
@@ -175,6 +177,7 @@ public class ConsejoAdmin {
 		configuracion.configurarLimiteMaxAfectacion(limite);
 	}
 	
+
 }
 
 
