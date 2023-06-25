@@ -1,6 +1,8 @@
 package logica;
 import java.util.ArrayList;
 
+import cu.edu.cujae.ceis.tree.binary.BinaryTree;
+import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import utiles.Utiles;
 
 
@@ -9,8 +11,13 @@ public class Reporte {
 	
 	private ConsejoAdmin admin;
 	
+	/////Arbol de decisiones/////
+	private BinaryTreeNode<PlantillaIndice> arbolPrioridad;
+	
+	
 	public Reporte(ConsejoAdmin admin) {
 		this.admin = admin;
+		arbolPrioridad = new BinaryTreeNode<PlantillaIndice>();
 	}
 	
 	public class IDIndicePrioridad{
@@ -231,4 +238,62 @@ public class Reporte {
 		}
 		return new DatosMaterialSelec(nombre, fondo, cantidad, medida);
 	}	
+	
+
+	/////Funcionalidades del arbol de decisiones/////
+	
+	public class PlantillaIndice{
+		
+		private Plantilla plantilla;
+		private float indicePrioridad;
+		
+		public PlantillaIndice(Plantilla plantilla) {
+			this.plantilla = plantilla;
+			this.indicePrioridad = indicePrioridad(plantilla);
+		}
+
+		public Plantilla getPlantilla() {
+			return plantilla;
+		}
+		
+		public void setPlantilla(Plantilla plantilla) {
+			this.plantilla = plantilla;
+		}
+		
+		public float getIndicePrioridad() {
+			return indicePrioridad;
+		}
+		
+		public void setIndicePrioridad(float indicePrioridad) {
+			this.indicePrioridad = indicePrioridad;
+		}
+		
+		
+	}
+	
+	
+	public BinaryTree<PlantillaIndice> crearArbol(){
+		BinaryTree<PlantillaIndice> arbol = new BinaryTree<PlantillaIndice>();
+		ArrayList<Plantilla> plantillas = admin.getListaPlantillas();
+		float indiceRaiz = indicePrioridad(plantillas.get(0));
+		arbol.setRoot(new BinaryTreeNode<PlantillaIndice>(new PlantillaIndice(plantillas.get(0))));
+		
+		for(int i=1 ; i < plantillas.size();i++){
+			PlantillaIndice pi = new PlantillaIndice(plantillas.get(i));
+			if(pi.getIndicePrioridad() > indiceRaiz){
+				((BinaryTreeNode<PlantillaIndice>)arbol.getRoot()).setLeft(new BinaryTreeNode<PlantillaIndice>(pi));
+			
+			}
+				
+			
+				
+		}
+		
+		return arbol;
+	}
+	
+	
+	
+	
+	
 }
