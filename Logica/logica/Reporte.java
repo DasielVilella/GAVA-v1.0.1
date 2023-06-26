@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
+import cu.edu.cujae.ceis.tree.iterators.binary.PosOrderIterator;
+import cu.edu.cujae.ceis.tree.lexicographical.DoesNotImplementsComparable;
+import cu.edu.cujae.ceis.tree.lexicographical.LexicographicTree;
 import utiles.Utiles;
 
 
@@ -242,7 +245,7 @@ public class Reporte {
 
 	/////Funcionalidades del arbol de decisiones/////
 	
-	public class PlantillaIndice{
+	public class PlantillaIndice implements Comparable<PlantillaIndice>{
 		
 		private Plantilla plantilla;
 		private float indicePrioridad;
@@ -268,25 +271,37 @@ public class Reporte {
 			this.indicePrioridad = indicePrioridad;
 		}
 		
+		public int compareTo(PlantillaIndice p){
+			int comparacion = 0;
+			
+			if(this.indicePrioridad > p.getIndicePrioridad()){
+				comparacion = 1;
+			}else if(this.indicePrioridad < p.getIndicePrioridad()){
+				comparacion = -1;
+			}
+			return comparacion;
+		}
+		
 		
 	}
 	
 	
-	public BinaryTree<PlantillaIndice> crearArbol(){
-		BinaryTree<PlantillaIndice> arbol = new BinaryTree<PlantillaIndice>();
-		ArrayList<Plantilla> plantillas = admin.getListaPlantillas();
-		float indiceRaiz = indicePrioridad(plantillas.get(0));
-		arbol.setRoot(new BinaryTreeNode<PlantillaIndice>(new PlantillaIndice(plantillas.get(0))));
+	public LexicographicTree<PlantillaIndice> crearArbol(){
+		LexicographicTree<PlantillaIndice> arbol = new LexicographicTree<PlantillaIndice>();
+		ArrayList<Plantilla> listaPlantillas = admin.getListaPlantillas();
+		if(!(admin.getListaPlantillas().isEmpty())){
+			arbol.setRoot(new BinaryTreeNode<PlantillaIndice>(new PlantillaIndice(listaPlantillas.get(0))));
+		}
+		Plantilla plantilla = null;
 		
-		for(int i=1 ; i < plantillas.size();i++){
-			PlantillaIndice pi = new PlantillaIndice(plantillas.get(i));
-			if(pi.getIndicePrioridad() > indiceRaiz){
-				((BinaryTreeNode<PlantillaIndice>)arbol.getRoot()).setLeft(new BinaryTreeNode<PlantillaIndice>(pi));
-			
-			}
-				
-			
-				
+		for(int i=1 ; i < listaPlantillas.size();i++){
+			plantilla = listaPlantillas.get(i);
+			PlantillaIndice plantillaIndice= new PlantillaIndice(plantilla);
+			try {
+				arbol.insertValue(plantillaIndice);
+			} catch (DoesNotImplementsComparable e) {
+				e.printStackTrace();
+			}	
 		}
 		
 		return arbol;

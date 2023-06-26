@@ -5,7 +5,7 @@ import grafica.Pantalla;
 import java.awt.EventQueue;
 
 import logica.ConsejoAdmin;
-
+import logica.Reporte;
 
 
 public class Main {
@@ -15,6 +15,9 @@ public class Main {
 		final ConsejoAdmin admin = ConsejoAdmin.getInstance();	
 		admin.inicializarMateriales();                              
 		admin.inicializarValoresPorDefecto();
+		
+		Reporte r=new Reporte(admin);
+		r.crearArbol();
 		
 		/*
 		 * Programa por consola prototipo:
@@ -27,7 +30,7 @@ public class Main {
 		/*
 		 * Correr pantalla.
 		 */
-			EventQueue.invokeLater(new Runnable() {
+		/*	EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 						Pantalla frame = new Pantalla(admin);
@@ -36,7 +39,7 @@ public class Main {
 						e.printStackTrace();
 					}
 				}
-			});
+			});*/
 		}
 }
 
