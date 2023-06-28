@@ -3,6 +3,7 @@ package grafica;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
 
 import javax.swing.JTabbedPane;
@@ -53,6 +54,7 @@ import logica.Ficha;
 import logica.Material;
 import logica.NucleoFamiliar;
 import logica.Plantilla;
+import logica.Reporte;
 import logica.Reporte.DatosMaterialSelec;
 import logica.Reporte.IDIndicePrioridad;
 import logica.Reporte.MaterialMasFondos;

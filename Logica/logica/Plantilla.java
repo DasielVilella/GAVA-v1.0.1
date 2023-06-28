@@ -10,6 +10,9 @@ public class Plantilla {
 		this.listaCubVivienda = crearListaCubViv();	
 	}
 	
+	public Plantilla(){
+		
+	}
 	
 	public Ficha getFicha(){
 		return ficha;

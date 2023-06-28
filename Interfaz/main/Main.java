@@ -30,7 +30,7 @@ public class Main {
 		/*
 		 * Correr pantalla.
 		 */
-		/*	EventQueue.invokeLater(new Runnable() {
+			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 						Pantalla frame = new Pantalla(admin);
@@ -39,7 +39,7 @@ public class Main {
 						e.printStackTrace();
 					}
 				}
-			});*/
+			});
 		}
 }
 
