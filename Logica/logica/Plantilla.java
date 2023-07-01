@@ -1,9 +1,13 @@
 package logica;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Plantilla {
+public class Plantilla implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private Ficha ficha;
 	private ArrayList<Cubicacion> listaCubVivienda;
+	
 	
 	public Plantilla(Ficha ficha){
 		this.ficha = ficha;
