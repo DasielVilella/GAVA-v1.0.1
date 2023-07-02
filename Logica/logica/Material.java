@@ -12,7 +12,11 @@ public class Material implements Identificador,Serializable{
 	private String unidadMedida;
 	private int cantMetCuad;
 	private String ID;
+<<<<<<< Updated upstream
+	static final long serialVersionUID = 6L;
+=======
 	static final long serialVersionUID = 1L;
+>>>>>>> Stashed changes
 	
 	
 	public Material(String ID,String nombre,double precioU,String unidadMedida, int cantMetCuad){

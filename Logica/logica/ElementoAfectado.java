@@ -1,11 +1,14 @@
 package logica;
+import java.io.Serializable;
+
 import utiles.Validaciones;
 
 
-public class ElementoAfectado {
+public class ElementoAfectado implements Serializable{
 	
-	String nombre;
-	int cantidad;
+	private static final long serialVersionUID = 8;
+	private String nombre;
+	private int cantidad;
 	
 	public ElementoAfectado(String nombre, int cantidad) {
 		this.nombre = nombre;

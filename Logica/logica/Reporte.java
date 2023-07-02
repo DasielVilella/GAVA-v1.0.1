@@ -1,15 +1,11 @@
 package logica;
 import java.util.ArrayList;
-
-import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
-import cu.edu.cujae.ceis.tree.iterators.binary.PosOrderIterator;
 import cu.edu.cujae.ceis.tree.iterators.binary.SymmetricIterator;
 import cu.edu.cujae.ceis.tree.lexicographical.DoesNotImplementsComparable;
 import cu.edu.cujae.ceis.tree.lexicographical.LexicographicTree;
 import cu.edu.cujae.ceis.tree.lexicographical.LexicographicTree.Order;
 import utiles.Utiles;
-
 
 
 public class Reporte {
@@ -19,10 +15,9 @@ public class Reporte {
 	/////Arbol de decisiones/////
 	private LexicographicTree<PlantillaIndice> arbolLexicografico = null;
 
-	
+
 	public Reporte(ConsejoAdmin admin) {
 		this.admin = admin;
-		arbolLexicografico = null;
 		crearArbol();
 	}
 	
@@ -238,8 +233,7 @@ public class Reporte {
 					cantidad += c.getCantMaterialP();
 					fondo += c.getPrecioMatP();
 					medida = c.getMaterial().getUnidadMedida();
-			}
-			
+				}
 		    }
 		}
 		return new DatosMaterialSelec(nombre, fondo, cantidad, medida);
@@ -300,18 +294,51 @@ public class Reporte {
 		}
 	}
 	
-	public PlantillaIndice eliminarPlantillaIndice(){
-		PlantillaIndice plantilla =null;
+	public PlantillaIndice eliminarPlantillaIndice(PlantillaIndice plantillaIndice){
+		PlantillaIndice p = null;
 		try {
-			plantilla = this.arbolLexicografico.deleteNode(plantilla);
+			p = this.arbolLexicografico.deleteNode(plantillaIndice);
 		} catch (DoesNotImplementsComparable e) {
 			e.printStackTrace();
 		}
-		return plantilla;
+		return p;
 	}
 	
-	public PlantillaIndice plantillaMayorIndicePrioridad(){
-		return ((BinaryTreeNode<PlantillaIndice>)this.arbolLexicografico.getRoot()).getInfo();
+<<<<<<< Updated upstream
+=======
+	public PlantillaIndice eliminarPlantillaIndicePorPlantilla(Plantilla plantilla){
+		PlantillaIndice p = null;
+		if(this.arbolLexicografico.isEmpty()){
+			boolean aux = false;
+			SymmetricIterator<PlantillaIndice> it = this.arbolLexicografico.symmetricIterator();
+			 while(it.hasNext() && !aux){
+				 BinaryTreeNode<PlantillaIndice> node = it.nextNode();
+				 if(node.getInfo().getPlantilla().equals(plantilla)){
+					 try {
+						p=arbolLexicografico.deleteNode(node.getInfo());
+					} catch (DoesNotImplementsComparable e) {
+						e.printStackTrace();
+					}
+					 aux=true;
+				 }
+			 }
+		 }
+		 return p;
+	}
+	
+>>>>>>> Stashed changes
+	public PlantillaIndice plantillaMayorPrioridad(){
+		PlantillaIndice plantilla = null;
+		if(!(arbolLexicografico.getRoot() == null)){
+			SymmetricIterator<PlantillaIndice> it = arbolLexicografico.symmetricIterator();
+			BinaryTreeNode<PlantillaIndice> node = null;
+			while(it.hasNext() && plantilla == null){
+				node = it.nextNode();
+				if(node != null)
+					plantilla = node.getInfo();
+			}
+		}
+		return plantilla;
 	}
 	
 	public void crearArbol(){	
@@ -322,7 +349,6 @@ public class Reporte {
 			} catch (DoesNotImplementsComparable e1) {
 				e1.printStackTrace();
 			}
-			
 			for(int i=1 ; i < listaPlantillas.size();i++){
 				Plantilla plantilla = listaPlantillas.get(i);
 				PlantillaIndice plantillaIndice= new PlantillaIndice(plantilla);
@@ -335,7 +361,10 @@ public class Reporte {
 
 		}
 	}	
+<<<<<<< Updated upstream
+		
+=======
 	
-	////
 	
+>>>>>>> Stashed changes
 }

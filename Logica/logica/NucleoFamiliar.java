@@ -1,9 +1,12 @@
 package logica;
 
+import java.io.Serializable;
+
 import utiles.Validaciones;
 
-public class NucleoFamiliar {
+public class NucleoFamiliar implements Serializable{
 
+	private static final long serialVersionUID = 4;
 	private String ciJefe;
 	private int totalPersonas;
 	private int cantAncianos;

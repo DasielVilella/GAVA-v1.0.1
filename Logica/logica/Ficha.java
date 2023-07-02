@@ -1,11 +1,13 @@
 package logica;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
 
-public class Ficha {
+public class Ficha implements Serializable{
 	
+	private static final long serialVersionUID = 2L;
 	public Dictamen dictamen;
 	public NucleoFamiliar nucleo;
 	public ArrayList<Afectacion> AfectacionesVivienda;
@@ -71,8 +73,8 @@ public class Ficha {
 		listaElementos.add(elemento);
 	}
 	
-	public Plantilla crearPlantilla(){
-		Plantilla plantilla = new Plantilla(this);
+	public Plantilla crearPlantilla(String municipio){
+		Plantilla plantilla = new Plantilla(this, municipio);
 		return plantilla;
 	}
 	

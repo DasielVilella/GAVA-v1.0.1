@@ -7,15 +7,21 @@ public class Plantilla implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Ficha ficha;
 	private ArrayList<Cubicacion> listaCubVivienda;
+	private String municipio;
+<<<<<<< Updated upstream
+
+=======
 	
+<<<<<<< HEAD
+	public Plantilla(Ficha ficha, String municipio){
+=======
+>>>>>>> Stashed changes
 	
 	public Plantilla(Ficha ficha){
+>>>>>>> c7a657beceddcd1aa13f6248d78f2e205cd5dd8b
 		this.ficha = ficha;
 		this.listaCubVivienda = crearListaCubViv();	
-	}
-	
-	public Plantilla(){
-		
+		this.municipio = municipio;
 	}
 	
 	public Ficha getFicha(){
@@ -41,5 +47,9 @@ public class Plantilla implements Serializable{
     	}
     	return totalCubicacion;
 		
+	}
+	
+	public String getMunicipio(){
+		return municipio;
 	}
 }

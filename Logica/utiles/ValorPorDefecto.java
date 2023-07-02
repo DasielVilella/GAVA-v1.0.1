@@ -113,6 +113,31 @@ public class ValorPorDefecto{
 		return listaUnidadMedida;
 	}
 	
+	private static ArrayList<String> listaMunicipios = new ArrayList<String>(){
+		private static final long serialVersionUID = 1L;
+	{
+		add("Playa");
+		add("Lisa");
+		add("Marianao");
+		add("Boyeros");
+		add("Plaza");
+		add("Cerro");
+		add("Centro Habana");
+		add("Habana Vieja");
+		add("Diez de Octubre");
+		add("Arroyo Naranjo");
+		add("Regla");
+		add("San Miguel del Padron");
+		add("Cotorro");
+		add("Habana del Este");
+		add("Guanabacoa");
+	}};;
+	
+	
+	public static ArrayList<String> getListaMunicipios() {
+		return listaDocLegal;
+	}
+	
 	
 	
 	

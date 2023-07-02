@@ -1,8 +1,11 @@
 package logica;
 
+import java.io.Serializable;
 
-public class Cubicacion {
+
+public class Cubicacion implements Serializable{
 	
+	private static final long serialVersionUID = 7;
 	private Material material;
 	private int cantMaterialP;
 	private double precioMatP;

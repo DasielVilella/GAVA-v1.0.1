@@ -1,12 +1,14 @@
 package logica;
+import java.io.Serializable;
 import java.util.Date;
 
 import utiles.Utiles;
 import utiles.Validaciones;
 import utiles.ValorPorDefecto;
 
- public class Dictamen implements Identificador, Dimensiones {
+ public class Dictamen implements Identificador, Dimensiones, Serializable {
 	
+	private static final long serialVersionUID = 3L;
 	private String direccion;
 	private String docLegal;
 	private Date fechaLev;

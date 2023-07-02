@@ -5,7 +5,6 @@ import grafica.Pantalla;
 import java.awt.EventQueue;
 
 import logica.ConsejoAdmin;
-import logica.Reporte;
 
 
 public class Main {
@@ -16,8 +15,8 @@ public class Main {
 		admin.inicializarMateriales();                              
 		admin.inicializarValoresPorDefecto();
 		
-		Reporte r=new Reporte(admin);
-		r.crearArbol();
+		//quitar
+		admin.crearGrafo();
 		
 		/*
 		 * Programa por consola prototipo:

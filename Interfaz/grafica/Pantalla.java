@@ -35,6 +35,9 @@ import utiles.ValorPorDefecto;
 
 import com.toedter.calendar.JDateChooser;
 
+import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
+import cu.edu.cujae.ceis.tree.iterators.binary.SymmetricIterator;
+
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -58,6 +61,7 @@ import logica.Reporte;
 import logica.Reporte.DatosMaterialSelec;
 import logica.Reporte.IDIndicePrioridad;
 import logica.Reporte.MaterialMasFondos;
+import logica.Reporte.PlantillaIndice;
 import logica.Reporte.ViviendaMayorHab;
 
 import java.awt.event.ActionListener;
@@ -794,6 +798,7 @@ public class Pantalla extends JFrame {
 	private JPanel getAjustesBtn() {
 		if (AjustesBtn == null) {
 			AjustesBtn = new JPanel();
+
 			AjustesBtn.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
@@ -811,7 +816,8 @@ public class Pantalla extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					
 					Pantallas.setSelectedIndex(7);
-					
+					//quitar
+					admin.crearGrafo();
 					condicion = "Ajustes";
 					lblInicio.setForeground(Color.white);	
 					lblNuevaFicha.setForeground(Color.white);
@@ -3338,7 +3344,8 @@ public class Pantalla extends JFrame {
 						ficha.nuevaListaElementos();
 						ficha.setListaElementos(listaElementos);
 					}
-					Plantilla plantilla = ficha.crearPlantilla();
+					//arreglar
+					Plantilla plantilla = ficha.crearPlantilla("municipio");
 					admin.agregarPlantilla(plantilla);
 					reiniciarDatos();
 					JOptionPane.showMessageDialog(null, "Ficha Registrada con Éxito", null, 3);

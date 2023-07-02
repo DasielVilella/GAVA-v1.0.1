@@ -1,12 +1,15 @@
 package logica;
 
+import java.io.Serializable;
+
 import utiles.Utiles;
 import utiles.Validaciones;
 import utiles.ValorPorDefecto;
 
 
-abstract public class Afectacion implements Identificador, Dimensiones {
+abstract public class Afectacion implements Identificador, Dimensiones, Serializable {
 	
+	private static final long serialVersionUID = 5;
 	protected boolean afectTotal;
 	protected String ID;
 	protected float dim1;
