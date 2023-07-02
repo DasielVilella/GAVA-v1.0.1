@@ -1,15 +1,19 @@
 package logica;
+import java.io.Serializable;
+
 import utiles.Validaciones;
 import utiles.ValorPorDefecto;
 
 
-public class Material implements Identificador{
+public class Material implements Identificador,Serializable{
 	
 	private String nombre;
 	private double precioU;
 	private String unidadMedida;
 	private int cantMetCuad;
 	private String ID;
+	static final long serialVersionUID = 1L;
+	
 	
 	public Material(String ID,String nombre,double precioU,String unidadMedida, int cantMetCuad){
 		this.nombre=nombre;

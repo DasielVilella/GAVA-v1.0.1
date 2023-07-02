@@ -1,5 +1,7 @@
 package logica;
 
-public interface Identificador {
+
+public interface Identificador{
 	String getID();
+	
 }

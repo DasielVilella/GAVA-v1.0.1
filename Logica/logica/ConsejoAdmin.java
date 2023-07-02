@@ -1,5 +1,9 @@
 package logica;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import cu.edu.cujae.ceis.graph.LinkedGraph;
@@ -12,15 +16,22 @@ public class ConsejoAdmin {
 	private ArrayList<Plantilla> listaPlantillas;
 	private Reporte reporte;
 	private Configuracion configuracion;
+	private String plantillaPath= "";
+	private String materialesPath="";
+	private String path=null;
+	
 	
 	
 	private static ConsejoAdmin instance = null;
 	
 	private ConsejoAdmin(){
+		
 		this.listaMateriales = new ArrayList<Material>();
 		this.listaPlantillas = new ArrayList<Plantilla>();
 		reporte = new Reporte(this);
 		configuracion = new Configuracion(this);
+		plantillaPath=path+"\\data\\plantillas.dat";
+		materialesPath=path+"\\data\\materiales.dat";
 	}
 	
 	
@@ -42,6 +53,11 @@ public class ConsejoAdmin {
 
 	public ArrayList<Plantilla> getListaPlantillas(){
 		return listaPlantillas;
+	}
+	
+	public void setMateriales(ArrayList<Material>materiales) {
+		
+		this.listaMateriales=materiales;
 	}
 
 
@@ -105,6 +121,11 @@ public class ConsejoAdmin {
 	
 	public void agregarPlantilla(Plantilla plantilla){
 		listaPlantillas.add(plantilla);
+	}
+	
+	public void SetPlantillas(ArrayList<Plantilla>plantillas) {
+		this.listaPlantillas=plantillas;
+		
 	}
 
 
@@ -177,7 +198,97 @@ public class ConsejoAdmin {
 		configuracion.configurarLimiteMaxAfectacion(limite);
 	}
 	
-
+	//**************************************************************************************************************************************************
+	//******************************************************   AlMACENAMIENTO FICHEROS   *******************************************************
+	//**************************************************************************************************************************************************
+	
+	public void MaterialesFichero(){            //Escribir en el fichero de los materiales
+		
+		try {
+			FileOutputStream MfileOut =new FileOutputStream(materialesPath);
+			ObjectOutputStream Mobjout =new ObjectOutputStream(MfileOut);
+			Mobjout.writeObject(listaMateriales);
+			MfileOut.close();
+			Mobjout.close();
+			
+		}catch (Exception e) {
+			System.out.println("Error"+ e.getMessage());
+		}
+		
+		
+	}
+	
+public void PlantillaFicheros(){         //Escribir en el fichero de las platillas
+		
+		try {
+			
+			FileOutputStream PfileOut =new FileOutputStream(materialesPath);
+			ObjectOutputStream Pobjout =new ObjectOutputStream(PfileOut);
+			Pobjout.writeObject(listaMateriales);
+			PfileOut.close();
+			Pobjout.close();
+			
+		}catch (Exception e) {
+			System.out.println("Error"+ e.getMessage());
+		}
+		
+		
+	}
+	
+	
+	public void loadMAteriales() {             //Lee Los materiales del fichero y los mete en el ArrayList De materiales 
+		
+		
+		try {
+			FileInputStream MfileIn = new FileInputStream(materialesPath);
+			ObjectInputStream MObjectIn = new ObjectInputStream(MfileIn);
+			setMateriales((ArrayList<Material>)MObjectIn.readObject());
+			MfileIn.close();
+			MObjectIn.close();
+			
+		
+		}catch (Exception e) {
+			System.out.println("Error"+e.getMessage());
+		}
+		
+		
+		
+	}
+	
+	
+	
+public void loadPlantillas() {             //Lee las plantillas  del fichero y los mete en el ArrayList De plantillas
+		
+		
+		try {
+			FileInputStream PfileIn = new FileInputStream(plantillaPath);
+			ObjectInputStream PObjectIn = new ObjectInputStream(PfileIn);
+			SetPlantillas((ArrayList<Plantilla>)PObjectIn.readObject());
+			PfileIn.close();
+			PObjectIn.close();
+			
+		
+		}catch (Exception e) {
+			System.out.println("Error"+e.getMessage());
+		}
+		
+		
+		
+	}
+	
+//**************************************************************************************************************************************************
+	//****************************************************** FIN  AlMACENAMIENTO FICHEROS   *******************************************************
+	//**************************************************************************************************************************************************
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
 
 
